@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <iomanip>
+#define size 8
 class Contact {
     public:
         std::string name;
@@ -9,42 +10,66 @@ class Contact {
 class PhoneBook
 {
     private:
-        Contact contacts[8];
+        Contact contacts[size];
         int numContacts;
+        int old_index;
     public:
-            PhoneBook()
-            {
-                numContacts = 0;
-            }
-
+        PhoneBook()
+        {
+            numContacts = 0;
+            old_index = 0;
+        }
+        int emtyField(const std::string name, const std::string number)
+        {
+            if(name.empty() || number.empty())
+                return(1);
+            return(0);
+        }
         void addContact(const std::string name, const std::string number)
         {
+            if(emtyField(name,number) == 1)
+                return ;
             Contact contact;
             contact.name = name;
             contact.number = number;
 
-            if (numContacts < 8) {
+            if (numContacts < size)
+            {
                 contacts[numContacts] = contact;
                 numContacts++;
-            } else {
-                for (int i = 0; i < 7; ++i) {
-                    contacts[i] = contacts[i + 1];
-                }
-                contacts[7] = contact;
+            } else
+            {
+                contacts[old_index] = contact;
+                old_index = (old_index + 1) % size;
             }
         }
-
-        void displayContacts(std::string name)
+        void displayContacts()
         {
-            if (numContacts == 0) {
-                std::cout << "Phonebook is empty." << std::endl;
-            } else {
+            if (numContacts == 0)
+            {
+                std::cout <<"Phonebook is empty." << std::endl;
+            } else
+            {
                 std::cout << "Phonebook Contacts:" << std::endl;
                 for (int i = 0; i < numContacts; i++)
                 {
-                    if(contacts[i].name == name)
-                        std::cout << i  << ". Name: " << contacts[i].name << ", Number: " << contacts[i].number << std::endl;
+                        int index = (old_index + i) % size;
+                        std::cout << std::setw(2) << i + 1 << ". "
+                        << std::setw(20) << contacts[index].name << " | "
+                        << std::setw(15) << contacts[index].number << std::endl;
                 }
             }
         }
+        void display()
+        {
+            for(int i = 0;i < numContacts ;i++)
+            {
+                int index = (old_index + i) % size;
+                std::cout << "Phonebook Contacts:" << std::endl;
+                std::cout << i+1  << ". Name: " << contacts[index].name << " | Number: " << contacts[index].number << std::endl;
+                //std::cout << "Phonebook Contacts:" << std::endl;
+            }
+        }
 };
+
+

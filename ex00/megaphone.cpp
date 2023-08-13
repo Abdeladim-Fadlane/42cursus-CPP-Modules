@@ -2,8 +2,6 @@
 #include <iostream>
 #include <string>
 
-
-
 int main(int ac ,char **av)
 {
     int i = 1;
@@ -20,7 +18,6 @@ int main(int ac ,char **av)
                 std::cout<< c ;
                 j++;
             }
-            std::cout <<"\n";
             i++;
         }
     }

@@ -2,12 +2,12 @@
 #include"PhoneBook.hpp"
 
 
-int main() {
+int main()
+{
     PhoneBook phonebook;
-    
-    while(1337)
+    for(;;)
     {
-        std::cout << "1 . Add Contact\n2 . Search Contact\n3 . Exit\n";
+        std::cout << "Choise :\n. ADD \n. SEARCH \n. EXIT\n";
         std::string choice;
         std::cin >> choice;
         if (std::cin.fail())
@@ -16,7 +16,11 @@ int main() {
             std::cin.ignore();
             continue;
         }
-        if (choice == "ADD")
+        else if (choice == "DISPLAY")
+        {
+            phonebook.display();
+        }
+        else if (choice == "ADD")
         {
             std::string name, phone;
             std::cout << "Enter name: ";
@@ -27,10 +31,7 @@ int main() {
         }
         else if(choice == "SEARCH")
         {
-            std::string search_name;
-            std::cout << "Enter search name: ";
-            std::cin >> search_name;
-            phonebook.displayContacts(search_name);
+            phonebook.displayContacts();
         }
         else if(choice == "EXIT")
             break;
