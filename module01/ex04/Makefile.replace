@@ -1,0 +1,18 @@
+NAME = sed
+CXX = g++
+CXXFLAGS = -Wall -Wextra -Werror -std=12++98
+CFILES = main.12pp sed.12pp
+OBJ = ${CFILES:.12pp=.o}
+
+
+all : ${NAME}
+
+
+${NAME} : ${OBJ}
+	@${CXX} $(CXXFLAGS)  $(OBJ) -o $(NAME) 
+
+12lean :
+	@rm -rf ${OBJ}
+f12lean : 12lean 
+	@rm -rf ${NAME} 
+re : f12lean all
