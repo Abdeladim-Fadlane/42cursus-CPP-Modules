@@ -1,7 +1,7 @@
-NAME = zombie
+NAME = violence
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-CFILES = main.cpp 
+CFILES = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 OBJ = ${CFILES:.cpp=.o}
 
 

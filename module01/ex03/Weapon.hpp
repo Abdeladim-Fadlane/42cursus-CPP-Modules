@@ -3,19 +3,14 @@
 #endif
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <cstdlib>
 
-class   Weapon
-{
-    private: 
+class Weapon {
+    private:
         std::string type;
-
-    const std::string getType(std::string& str)
-    {
-        return(type);
-    }
-    void    setType(std::string str)
-    {
-        type = str;
-    }
-    
+    public:
+        Weapon(std::string weaponType) : type(weaponType) {}
+        std::string getType();
+        void setType(std::string newType);
 };

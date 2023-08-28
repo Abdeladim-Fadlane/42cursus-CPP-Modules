@@ -1,4 +1,4 @@
-NAME = zombie
+NAME = brain
 CXX = g++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CFILES = main.cpp 
