@@ -24,74 +24,55 @@ const std::string nname,const std::string number,const std::string secret)
     std::istringstream iss(number) ;
     iss>>index;
     if(index <= 0)
-        return(1);
-    if(fname.empty() || number.empty() || lname.empty()
-        || nname.empty()|| secret.empty() )
-        return(1);
+        return(2);
+    std::string buff[5] = {fname,nname,secret,lname,number};
+    int i = 0;
+    int j = 0;
+    while(i < 5)
+    {
+        j = 0;
+        if(buff[i].length() == 0 || !buff[i].compare(" "))
+            return(1);
+        while(j < buff[i][j])
+        {
+            if(!isprint(buff[i][j]))
+                return(1);
+            j++;
+        }
+        i++;
+    }
     return(0);
 }
 
 void PhoneBook::addContact(const std::string fname,const std::string lname,
 const std::string nname,const std::string number,const std::string secret)
-{
-    if(emtyField(fname,lname,nname,number,secret) == 1)
+{   
+    int i = emtyField(fname,lname,nname,number,secret) ;
+    if(i == 2)
+    {
+        std::cout<<"\n\033[1;31mALERT! The number must containes olny digits !!\033[0m \n";
         return ;
+    } 
+    if(i == 1)
+    {
+        std::cout<<"\n\033[1;31mALERT! Can't save contact whit emty field !!\033[0m\n";
+        return ;
+    }
     Contact contact;
     contact.firstName = fname;
     contact.lastName = lname;
     contact.nikName = nname;
     contact.secret = secret;
     contact.number = number;
-    if (numContacts < size)
+    if (numContacts < SIZE)
     {
         contacts[numContacts] = contact;
         numContacts++;
-    } else
-    {
-        contacts[old_index] = contact;
-        old_index = (old_index + 1) % size;
-    }
-}
-
-int PhoneBook::displayContacts()
-{
-    if (numContacts == 0)
-    {
-        std::cout <<"Phonebook is empty." << std::endl;
-        return (1);
     }
     else
     {
-        
-        std::cout << "*****Phonebook Contacts*****" << std::endl;
-        for (int i = 0; i < numContacts; i++)
-        {
-                int index = (old_index + i) % size;
-                std::cout<<std::setw(10)   << i << "|"
-                << std::setw(10) << contacts[index].firstName << "|"
-                << std::setw(10) << contacts[index].lastName << "|"
-                << std::setw(10) << contacts[index].nikName
-                <<std::endl;    
-        }
-        std::cout<<"******************\n";
+        contacts[old_index] = contact;
+        old_index = (old_index + 1) % SIZE;
     }
-    return (0);
-}
-
-void PhoneBook::display(int index)
-{
-
-        for(int i = 0;i < numContacts ;i++)
-        {
-            if(index == i)
-            {
-                int n = (old_index + i) % size;
-                std::cout << "*****Search Contact*****" << std::endl;
-                std::cout <<"Fist Name : " << contacts[n].firstName << std::endl;
-                std::cout <<"last Name : " << contacts[n].lastName << std::endl;
-                std::cout <<"NikName   : " << contacts[n].nikName << std::endl;
-                std::cout <<"Secret    : " << contacts[n].secret << std::endl;
-                std::cout <<"Number    : " << contacts[n].number << std::endl;
-            } 
-        }
+    std::cout<<"\033[1;32m\nContact saved successfully!\033[0m\n";
 }

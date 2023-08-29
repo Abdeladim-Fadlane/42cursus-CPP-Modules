@@ -1,7 +1,7 @@
 
 NAME = phonebook
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
-CFILES = main.cpp phonebook.cpp
+CFILES = main.cpp phonebook.cpp  phonebook_utils.cpp
 CXX = g++
 OBJ = ${CFILES:.cpp=.o}
 
