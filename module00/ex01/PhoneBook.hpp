@@ -1,10 +1,13 @@
+#ifndef PHONRBOOK_HPP
+#define PHONRBOOK_HPP
+#endif
 #include <iostream>
 #include <iomanip>
 #include <string>
 #include <sstream>
 #include <cstdlib>
 #include <cstring>
-#define SIZE 8
+#define SIZE 2
 
 
 class Contact {

@@ -2,7 +2,7 @@
 
 int PhoneBook::check_index(int index)
 {
-    if (index >= 0 && index < numContacts)
+    if (index >=0  && index < numContacts)
         return(1); 
     return(0);
 }
@@ -64,15 +64,9 @@ const std::string nname,const std::string number,const std::string secret)
     contact.nikName = nname;
     contact.secret = secret;
     contact.number = number;
-    if (numContacts < SIZE)
-    {
-        contacts[numContacts] = contact;
-        numContacts++;
-    }
-    else
-    {
-        contacts[old_index] = contact;
-        old_index = (old_index + 1) % SIZE;
-    }
+    if (numContacts > SIZE - 1)
+        numContacts = 0;
+    contacts[numContacts] = contact;
+    numContacts++;
     std::cout<<"\033[1;32m\nContact saved successfully!\033[0m\n";
 }

@@ -35,7 +35,7 @@ void    choiceSearch(PhoneBook& phonebook)
             int index;
             std::istringstream iss(buff);
             iss >> index;
-            if(phonebook.check_index(index) == 0 || index == 0)
+            if(phonebook.check_index(index) == 0)
             {
                 std::cout<<"\n\033[1;31mAlert! Wrong index !!\033[0m "<<std::endl;
                 break;
@@ -59,14 +59,13 @@ int PhoneBook::displayContacts()
         std::cout<< std::setw(10) <<"Index"<< "|"
         << std::setw(10) << "First Name"<< "|"
         << std::setw(10) << "Last Name" << "|"
-        << std::setw(10) << "NikName\n" ;
-        for (int i = 0; i < numContacts; i++)
+        << std::setw(10) << "NikName" << std::endl;
+        for (int i = 0; i < SIZE; i++)
         {
-                int index = (old_index + i) % SIZE; 
                 std::cout<<std::setw(10) << i+1 << "|"
-                << std::setw(10) << truncatedString(contacts[index].firstName) << "|"
-                << std::setw(10) << truncatedString(contacts[index].lastName)<< "|"
-                << std::setw(10) << truncatedString( contacts[index].nikName)
+                << std::setw(10) << truncatedString(contacts[i].firstName) << "|"
+                << std::setw(10) << truncatedString(contacts[i].lastName)<< "|"
+                << std::setw(10) << truncatedString( contacts[i].nikName)
                 <<std::endl;    
         }
         std::cout<<"******************\n";
@@ -76,17 +75,16 @@ int PhoneBook::displayContacts()
 
 void PhoneBook::display(int index)
 {
-        for(int i = 1;i < numContacts ;i++)
+        for(int i = 0;i < SIZE ;i++)
         {
-            if(index+1 == i)
+            if(index == i)
             {
-                int n = (old_index + i) % SIZE;
                 std::cout << "*****Search Contact*****" << std::endl;
-                std::cout <<"Fist Name : " << contacts[n].firstName << std::endl;
-                std::cout <<"last Name : " << contacts[n].lastName << std::endl;
-                std::cout <<"NikName   : " << contacts[n].nikName << std::endl;
-                std::cout <<"Secret    : " << contacts[n].secret << std::endl;
-                std::cout <<"Number    : " << contacts[n].number << std::endl;
+                std::cout <<"Fist Name : " << contacts[i].firstName << std::endl;
+                std::cout <<"last Name : " << contacts[i].lastName << std::endl;
+                std::cout <<"NikName   : " << contacts[i].nikName << std::endl;
+                std::cout <<"Secret    : " << contacts[i].secret << std::endl;
+                std::cout <<"Number    : " << contacts[i].number << std::endl;
             } 
         }
 }
