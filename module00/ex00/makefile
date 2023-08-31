@@ -1,8 +1,8 @@
 
 NAME = megaphone
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 CFILES = megaphone.cpp
-
+CXX = c++
 OBJ = ${CFILES:.cpp=.o}
 
 
@@ -10,7 +10,7 @@ all : ${NAME}
 
 
 ${NAME} : ${OBJ}
-	@c++   $(CFLAGS)  $(CFILES) -o $(NAME) 
+	@${CXX} $(CXXFLAGS)  $(CFILES) -o $(NAME) 
 
 clean :
 	rm -rf ${OBJ}
