@@ -7,16 +7,30 @@
 #include <sstream>
 #include <cstdlib>
 #include <cstring>
-#define SIZE 2
+#include<iostream>
+#include<string>
+#define SIZE 8
 
 
-class Contact {
-    public:
+class Contact
+{
+    private:
         std::string firstName;
         std::string lastName;
         std::string nikName;
         std::string secret;
         std::string number;
+    public:
+        std::string getFirstName();
+        std::string getLastName();
+        std::string getNikName();
+        std::string getSecret();
+        std::string getNumber();
+        void setFirstName(std::string str);
+        void setLastName(std::string str);
+        void setNikName(std::string str);
+        void setSecret(std::string str);
+        void setNumber(std::string str);
 };
 
 class PhoneBook
@@ -25,9 +39,9 @@ class PhoneBook
         Contact contacts[SIZE];
         int numContacts;
         int old_index;
+        int count;
     public:
-        
-        PhoneBook():numContacts (0),old_index (0){}
+        PhoneBook();
         int emtyField(const std::string fname,const std::string lname,
         const std::string nname,const std::string number,const std::string secret);
         void addContact(const std::string fname,const std::string lname,

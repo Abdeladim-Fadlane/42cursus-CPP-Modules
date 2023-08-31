@@ -22,6 +22,25 @@ void   choiceAdd(PhoneBook& phonebook)
     phonebook.addContact(fName,lName,nName,phone,secret);
 }
 
+int    convertToint(std::string str)
+{
+    int i = 0;
+    int re = 0;
+    while(i < (int)str.length())
+    {
+        if(str[i] < '0' || str[i] > '9')
+            return(-1);
+        i++;
+    }
+    i = 0;
+    while(str[i] >= '0' && str[i] <= '9')
+    {
+        re = re *10 + str[i] - '0';
+        i++;
+    }
+    return(re);
+}
+
 void    choiceSearch(PhoneBook& phonebook)
 {
     if(!phonebook.displayContacts())
@@ -32,9 +51,7 @@ void    choiceSearch(PhoneBook& phonebook)
             std::cout<<"Enter index : ";
             if(!std::getline(std::cin,buff))
                 break;
-            int index;
-            std::istringstream iss(buff);
-            iss >> index;
+            int index = convertToint(buff);
             if(phonebook.check_index(index) == 0)
             {
                 std::cout<<"\n\033[1;31mAlert! Wrong index !!\033[0m "<<std::endl;
@@ -60,12 +77,12 @@ int PhoneBook::displayContacts()
         << std::setw(10) << "First Name"<< "|"
         << std::setw(10) << "Last Name" << "|"
         << std::setw(10) << "NikName" << std::endl;
-        for (int i = 0; i < SIZE; i++)
+        for (int i = 0; i < count; i++)
         {
-                std::cout<<std::setw(10) << i+1 << "|"
-                << std::setw(10) << truncatedString(contacts[i].firstName) << "|"
-                << std::setw(10) << truncatedString(contacts[i].lastName)<< "|"
-                << std::setw(10) << truncatedString( contacts[i].nikName)
+                std::cout<<std::setw(10) << i << "|"
+                << std::setw(10) << truncatedString(contacts[i].getFirstName()) << "|"
+                << std::setw(10) << truncatedString(contacts[i].getLastName())<< "|"
+                << std::setw(10) << truncatedString(contacts[i].getNikName())
                 <<std::endl;    
         }
         std::cout<<"******************\n";
@@ -75,16 +92,23 @@ int PhoneBook::displayContacts()
 
 void PhoneBook::display(int index)
 {
-        for(int i = 0;i < SIZE ;i++)
+        for(int i = 0;i < 5 ;i++)
         {
             if(index == i)
             {
                 std::cout << "*****Search Contact*****" << std::endl;
-                std::cout <<"Fist Name : " << contacts[i].firstName << std::endl;
-                std::cout <<"last Name : " << contacts[i].lastName << std::endl;
-                std::cout <<"NikName   : " << contacts[i].nikName << std::endl;
-                std::cout <<"Secret    : " << contacts[i].secret << std::endl;
-                std::cout <<"Number    : " << contacts[i].number << std::endl;
+                std::cout <<"Fist Name : " << contacts[i].getFirstName() << std::endl;
+                std::cout <<"last Name : " << contacts[i].getLastName()<< std::endl;
+                std::cout <<"NikName   : " << contacts[i].getNikName() << std::endl;
+                std::cout <<"Secret    : " << contacts[i].getSecret()<< std::endl;
+                std::cout <<"Number    : " << contacts[i].getNumber() << std::endl;
             } 
         }
 }
+
+PhoneBook::PhoneBook()
+{
+    numContacts = 0;
+    old_index = 0;
+    count = 0;
+};
