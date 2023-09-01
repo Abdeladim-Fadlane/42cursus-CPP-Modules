@@ -16,21 +16,11 @@ std::string    truncatedString(std::string str)
     }
     return(str);
 }
-int my_atoi(std::string number)
-{
-    int i = 0;
-    while(i < (int)number.length())
-    {
-        if(number[i] > 47 && number[i] < 58)
-            return(1);
-        i++;
-    }
-    return(0);
-}
+
 int PhoneBook::emtyField( std::string fname,std::string lname,
 const std::string nname, std::string number, std::string secret)
 {
-    if(my_atoi(number) == 0)
+    if(convertToint(number) == -1)
         return(2);
     std::string buff[5] = {fname,nname,secret,lname,number};
     int i = 0;
@@ -69,13 +59,8 @@ const std::string nname,const std::string number,const std::string secret)
     contact.setFirstName(fname);
     contact.setLastName(lname);
     contact.setNikName(nname);
-    contact.setNumber(fname);
-    contact.setSecret(fname);
-    // contact.firstName = fname;
-    // contact.lastName = lname;
-    // contact.nikName = nname;
-    // contact.secret = secret;
-    // contact.number = number;
+    contact.setNumber(number);
+    contact.setSecret(secret);
     if (numContacts > SIZE - 1)
     {
         numContacts = 0;

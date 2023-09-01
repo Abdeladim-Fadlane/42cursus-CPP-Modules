@@ -53,4 +53,5 @@ class PhoneBook
 std::string    truncatedString(std::string str);
 void   choiceAdd(PhoneBook& phonebook);
 void    choiceSearch(PhoneBook& phonebook);
+int    convertToint(std::string str);
 

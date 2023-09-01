@@ -26,6 +26,8 @@ int    convertToint(std::string str)
 {
     int i = 0;
     int re = 0;
+    if(str[i] == '+')
+        i++;
     while(i < (int)str.length())
     {
         if(str[i] < '0' || str[i] > '9')
@@ -33,6 +35,8 @@ int    convertToint(std::string str)
         i++;
     }
     i = 0;
+    if(str[i] == '+')
+        i++;
     while(str[i] >= '0' && str[i] <= '9')
     {
         re = re *10 + str[i] - '0';
