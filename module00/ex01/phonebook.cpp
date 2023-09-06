@@ -2,7 +2,7 @@
 
 int PhoneBook::check_index(int index)
 {
-    if (index >= 0  && index < numContacts)
+    if (index >= 0  && index < count)
         return(1); 
     return(0);
 }
@@ -62,10 +62,7 @@ const std::string nname,const std::string number,const std::string secret)
     contact.setNumber(number);
     contact.setSecret(secret);
     if (numContacts > SIZE - 1)
-    {
         numContacts = 0;
-
-    }
     contacts[numContacts] = contact;
     numContacts++;
     count++;

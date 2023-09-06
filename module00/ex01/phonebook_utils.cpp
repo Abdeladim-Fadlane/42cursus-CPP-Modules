@@ -56,6 +56,7 @@ void    choiceSearch(PhoneBook& phonebook)
             if(!std::getline(std::cin,buff))
                 break;
             int index = convertToint(buff);
+           
             if(phonebook.check_index(index) == 0)
             {
                 std::cout<<"\n\033[1;31mAlert! Wrong index !!\033[0m "<<std::endl;
@@ -96,7 +97,7 @@ int PhoneBook::displayContacts()
 
 void PhoneBook::display(int index)
 {
-        for(int i = 0;i < 5 ;i++)
+        for(int i = 0;i < count ;i++)
         {
             if(index == i)
             {

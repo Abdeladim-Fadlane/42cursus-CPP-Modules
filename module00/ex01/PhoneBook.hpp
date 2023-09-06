@@ -39,11 +39,11 @@ class PhoneBook
         Contact contacts[SIZE];
         int numContacts;
         int old_index;
-        int count;
-    public:
-        PhoneBook();
+        int count; 
         int emtyField(const std::string fname,const std::string lname,
         const std::string nname,const std::string number,const std::string secret);
+    public:
+        PhoneBook();
         void addContact(const std::string fname,const std::string lname,
         const std::string nname,const std::string number,const std::string secret);
         int displayContacts();

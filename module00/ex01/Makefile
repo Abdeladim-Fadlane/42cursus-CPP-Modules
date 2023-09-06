@@ -1,6 +1,6 @@
 
 NAME = phonebook
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CFILES = main.cpp phonebook.cpp  phonebook_utils.cpp contact.cpp
 CXX = c++
 OBJ = ${CFILES:.cpp=.o}
