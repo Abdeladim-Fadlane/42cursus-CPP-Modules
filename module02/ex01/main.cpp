@@ -7,6 +7,7 @@ std::ostream    &operator<<(std::ostream &o, const Fixed &other)
 }
 
 #include <iostream>
+
 int main( void )
 {
     Fixed a;

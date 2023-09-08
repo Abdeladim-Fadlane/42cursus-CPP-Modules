@@ -53,3 +53,9 @@ int Fixed::toInt( void ) const
 {
     return (this->numberValue >> this->numberFranctional);
 }
+
+// Fixed Fixed::operator *(const Fixed &other)
+// {
+    
+//     return(*this);
+// }
