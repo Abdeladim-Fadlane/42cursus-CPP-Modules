@@ -1,36 +1,30 @@
 #include"Fixed.hpp"
 Fixed::Fixed():numberValue(0)
 {
-    //std::cout<<"Default constructor called\n";
 };
 
 Fixed::Fixed(const int n)
 {
-   // std::cout << "Int constructor called\n";
     this->numberValue = n << this->numberFranctional;
 };
 
 Fixed::Fixed(const float n)
 {
-    //std::cout<<"Float constructor called\n";
     this->numberValue = roundf((float)(n * (1 << this->numberFranctional)));
 };
 
 Fixed::~Fixed()
 {
-    //std::cout<<"Destructor called\n";
 };
 
 Fixed& Fixed::operator=(const Fixed& obj)
 {
-   // std::cout<<"Copy assignment operator called\n";
     numberValue = obj.getRawBits();
     return(*this);
 }
 
 Fixed::Fixed( const Fixed& obj)
 {
-    //std::cout<<"Copy constructor called\n";
     *this = obj;
 }
 
@@ -61,21 +55,66 @@ Fixed Fixed::operator*(const Fixed &other) const
     return (c1);
 }
 
-Fixed Fixed::operator\(const Fixed &other) const
+Fixed Fixed::operator/(const Fixed &other) const
 {
     Fixed c1;
-    c1.setRawBits(this->numberValue * other.numberValue / 256);
+    if(other.numberValue == 0)
+        return(c1);
+    c1.setRawBits(this->numberValue  * 256 / other.numberValue );
     return (c1);
 }
 Fixed Fixed::operator-(const Fixed &other) const
 {
     Fixed c1;
-    c1.setRawBits(this->numberValue * other.numberValue / 256);
+    c1.setRawBits(this->numberValue - other.numberValue );
     return (c1);
 }
 Fixed Fixed::operator+(const Fixed &other) const
 {
     Fixed c1;
-    c1.setRawBits(this->numberValue * other.numberValue / 256);
+    c1.setRawBits(this->numberValue + other.numberValue );
     return (c1);
+}
+///////////////////this is the way
+
+bool Fixed::operator>(const Fixed &other) const
+{
+
+    return(this->numberValue > other.numberValue );
+}
+bool Fixed::operator<(const Fixed &other) const
+{
+    return(this->numberValue < other.numberValue );
+}
+
+bool Fixed::operator>=(const Fixed &other) const
+{
+    return(this->numberValue >= other.numberValue );
+}
+bool Fixed::operator<=(const Fixed &other) const
+{
+    return(this->numberValue <= other.numberValue );
+}
+
+bool Fixed::operator==(const Fixed &other) const
+{
+    return(this->numberValue == other.numberValue );
+}
+bool Fixed::operator!=(const Fixed &other) const
+{
+    return(this->numberValue != other.numberValue );
+}
+
+
+Fixed Fixed::operator++()//Pre-increment operator
+{
+    ++this->numberValue;
+    return *this;
+}
+
+Fixed Fixed::operator++(int)//Post-increment operator
+{
+    Fixed tmp(*this);
+    this->numberValue++;
+    return tmp;
 }

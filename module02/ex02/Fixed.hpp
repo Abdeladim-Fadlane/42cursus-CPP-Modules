@@ -20,9 +20,17 @@ class Fixed
         float toFloat( void ) const;
         int toInt( void ) const;
         Fixed operator *(const Fixed &other)const;
-        Fixed operator\(const Fixed &other)const;
+        Fixed operator/(const Fixed &other)const;
         Fixed operator+(const Fixed &other)const;
         Fixed operator-(const Fixed &other)const;
+        bool operator>(const Fixed &other)const;
+        bool operator<(const Fixed &other)const;
+        bool operator>=(const Fixed &other)const;
+        bool operator<=(const Fixed &other)const;
+        bool operator==(const Fixed &other)const;
+        bool operator!=(const Fixed &other)const;
+        Fixed operator++();
+        Fixed operator++(int);
 };
 
 std::ostream    &operator<<(std::ostream &o, const Fixed &other);
