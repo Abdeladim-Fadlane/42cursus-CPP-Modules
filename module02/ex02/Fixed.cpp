@@ -100,6 +100,7 @@ bool Fixed::operator==(const Fixed &other) const
 {
     return(this->numberValue == other.numberValue );
 }
+
 bool Fixed::operator!=(const Fixed &other) const
 {
     return(this->numberValue != other.numberValue );
@@ -117,4 +118,35 @@ Fixed Fixed::operator++(int)//Post-increment operator
     Fixed tmp(*this);
     this->numberValue++;
     return tmp;
+}
+
+Fixed& Fixed:: min(Fixed& a, Fixed& b)
+{
+    if (a.numberValue < b.numberValue)
+        return a;
+    else 
+        return b;
+}
+const Fixed& Fixed:: min(const Fixed&  a, const Fixed& b)
+{
+    if (a.numberValue < b.numberValue)
+        return a;
+    else 
+        return b;
+}
+
+Fixed& Fixed:: max(Fixed& a, Fixed& b)
+{
+    if (a.numberValue > b.numberValue)
+        return a;
+    else 
+        return b;
+}
+
+const Fixed& Fixed:: max(const Fixed&  a, const Fixed& b)
+{
+    if (a.numberValue > b.numberValue)
+        return a;
+    else 
+        return b;
 }

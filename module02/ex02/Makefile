@@ -1,6 +1,6 @@
 NAME = Fixed
 CXX = g++
-# CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CFILES = main.cpp Fixed.cpp
 OBJ = ${CFILES:.cpp=.o}
 
