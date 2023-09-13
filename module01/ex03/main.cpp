@@ -9,8 +9,6 @@ int main()
         bob.attack();
         club.setType("some other type of club");
         bob.attack();
-        club.setType("AK-47");
-        bob.attack();
     }
     {
         Weapon club = Weapon("crude spiked club");
@@ -19,10 +17,10 @@ int main()
         jim.attack();
         club.setType("some other type of club");
         jim.attack();
-        Weapon HAJRA = Weapon("haJRA MALSSA");;
+
+        //Weapon HAJRA = Weapon("HAJRA MALSSA");
         HumanB bonawara("Bonawara");
-        bonawara.attack();
-        club.setType("some other type of club");
+        //bonawara.setWeapon(HAJRA);
         bonawara.attack();
     }
     return 0;

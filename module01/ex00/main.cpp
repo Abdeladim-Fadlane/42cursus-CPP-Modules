@@ -4,7 +4,8 @@
 
 int main()
 {
-    Zombie Foo("Foo");
+    Zombie Foo;
+    Foo.setName("Foo");
     Foo.announce();
     randomChump("Bonawara");
 }

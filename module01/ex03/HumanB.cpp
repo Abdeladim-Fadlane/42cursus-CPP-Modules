@@ -1,9 +1,11 @@
 #include"HumanB.hpp"
 
+HumanB::HumanB(std::string humanName) : name(humanName){}
 void HumanB::setWeapon(Weapon& newWeapon)
 {
     weaponPtr = &newWeapon;
 }
+
 void HumanB::attack()
 {
     if (weaponPtr)

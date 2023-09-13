@@ -23,6 +23,7 @@ void Harl::error( void )
 void Harl::complain(std::string level)
 {
     void (Harl::*p[4])() = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+
     std::string str[4] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
     for (int i = 0; i < 4; ++i)
@@ -35,5 +36,3 @@ void Harl::complain(std::string level)
     }
     std::cout << "Invalid complaint level.\n\n";
 }
-
-

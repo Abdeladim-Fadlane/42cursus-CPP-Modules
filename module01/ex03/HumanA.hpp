@@ -1,11 +1,6 @@
 #ifndef HUMANA_HPP
 #define HUMANA_HPP
-#endif
 #include <iostream>
-
-#ifndef HUMANA_HPP
-#define HUMANA_HPP
-#endif
 
 class HumanA
 {
@@ -14,7 +9,7 @@ class HumanA
         Weapon &weapon;
 
     public:
-        HumanA(std::string humanName,  Weapon& humanWeapon)
-            : name(humanName), weapon(humanWeapon) {}
+        HumanA(std::string humanName,  Weapon& humanWeapon);
         void attack();
 };
+#endif

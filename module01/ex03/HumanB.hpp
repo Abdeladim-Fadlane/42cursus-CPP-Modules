@@ -8,7 +8,7 @@ class HumanB
         std::string name;
         Weapon *weaponPtr = NULL;
     public:
-        HumanB(std::string humanName) : name(humanName){}
+        HumanB(std::string humanName);
         void setWeapon(Weapon& newWeapon);
         void attack();
 };
