@@ -6,12 +6,12 @@ ClapTrap::ClapTrap(const std::string& target)
     HitPoints = 10;
     EnergyPoints = 10;
     AttackDamage = 0;
-   std::cout<<"Default constructor called\n";
+   std::cout<<"ClapTrap constructor called\n";
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout<<"Default destructor called\n";
+    std::cout<<"ClapTrap destructor called\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& obj)
