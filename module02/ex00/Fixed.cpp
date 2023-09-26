@@ -4,6 +4,7 @@ Fixed::Fixed():numberValue(0)
 {
     std::cout<<"Default constructor called\n";
 };
+
 Fixed::~Fixed()
 {
     std::cout<<"Destructor called\n";

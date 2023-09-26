@@ -4,7 +4,6 @@
 int main(void)
 {
     ClapTrap claptrap("BONAWARA");
-    
     claptrap.attack("ZOBIR");
     claptrap.attack("ZOBIR");
     claptrap.takeDamage(8);

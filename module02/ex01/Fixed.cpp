@@ -2,24 +2,12 @@
 Fixed::Fixed():numberValue(0)
 {
     std::cout<<"Default constructor called\n";
-};
-
-Fixed::Fixed(const int n)
-{
-    std::cout << "Int constructor called\n";
-    this->numberValue = n << this->numberFranctional;
-};
-
-Fixed::Fixed(const float n)
-{
-    std::cout<<"Float constructor called\n";
-    this->numberValue = roundf((float)(n * (1 << this->numberFranctional)));
-};
+}
 
 Fixed::~Fixed()
 {
     std::cout<<"Destructor called\n";
-};
+}
 
 Fixed& Fixed::operator=(const Fixed& obj)
 {
@@ -44,18 +32,32 @@ void Fixed::setRawBits( int const raw )
     this->numberValue = raw;
 }
 
+//this is the way 
+
+Fixed::Fixed(const int n)
+{
+    std::cout << "Int constructor called\n";
+    this->numberValue = n * 256;
+}
+
+Fixed::Fixed(const float n)
+{
+    std::cout<<"Float constructor called\n";
+    this->numberValue = roundf(n * 256);
+}
+
 float Fixed::toFloat( void ) const
 {
-    return((float)this->numberValue / (1 << this->numberFranctional));
+    return((float)this->numberValue / 256);
 }
 
 int Fixed::toInt( void ) const
 {
-    return (this->numberValue >> this->numberFranctional);
+    return (this->numberValue / 256);
 }
 
-// Fixed Fixed::operator *(const Fixed &other)
-// {
-    
-//     return(*this);
-// }
+std::ostream&    operator<<(std::ostream &obj, const Fixed &other)
+{
+    obj << other.toFloat();
+    return (obj);
+}

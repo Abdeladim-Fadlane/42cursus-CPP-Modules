@@ -1,10 +1,6 @@
 #include"Fixed.hpp"
 
-std::ostream    &operator<<(std::ostream &o, const Fixed &other)
-{
-    o << other.toFloat();
-    return (o);
-}
+
 
 #include <iostream>
 
@@ -25,5 +21,3 @@ int main( void )
     std::cout << "d is " << d.toInt() << " as integer" << std::endl;
     return 0;
 }
-
-const int Fixed::numberFranctional = 8;

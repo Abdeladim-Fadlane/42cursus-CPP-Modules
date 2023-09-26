@@ -3,16 +3,6 @@ Fixed::Fixed():numberValue(0)
 {
 };
 
-Fixed::Fixed(const int n)
-{
-    this->numberValue = n << this->numberFranctional;
-};
-
-Fixed::Fixed(const float n)
-{
-    this->numberValue = roundf((float)(n * (1 << this->numberFranctional)));
-};
-
 Fixed::~Fixed()
 {
 };
@@ -28,6 +18,8 @@ Fixed::Fixed( const Fixed& obj)
     *this = obj;
 }
 
+//this is the way 
+
 int Fixed::getRawBits( void ) const
 {
     return(this->numberValue);
@@ -38,20 +30,34 @@ void Fixed::setRawBits(int const raw)
     this->numberValue = raw;
 }
 
+/////this is the way
+
+Fixed::Fixed(const int n)
+{
+    this->numberValue = n * 256;
+}
+
+Fixed::Fixed(const float n)
+{
+    this->numberValue = roundf(n * 256);
+}
+
 float Fixed::toFloat( void ) const
 {
-    return((float)this->numberValue / (1 << this->numberFranctional));
+    return((float)this->numberValue / 256);
 }
 
 int Fixed::toInt( void ) const
 {
-    return (this->numberValue >> this->numberFranctional);
+    return (this->numberValue / 256);
 }
+
+//this is the way
 
 Fixed Fixed::operator*(const Fixed &other) const
 {
     Fixed c1;
-    c1.setRawBits(this->numberValue * other.numberValue / 256);
+    c1.setRawBits((this->numberValue * other.numberValue) / 256);
     return (c1);
 }
 
@@ -60,9 +66,10 @@ Fixed Fixed::operator/(const Fixed &other) const
     Fixed c1;
     if(other.numberValue == 0)
         return(c1);
-    c1.setRawBits(this->numberValue  * 256 / other.numberValue );
+    c1.setRawBits(((float)this->numberValue  / other.numberValue ) * 256);
     return (c1);
 }
+
 Fixed Fixed::operator-(const Fixed &other) const
 {
     Fixed c1;
@@ -149,4 +156,10 @@ const Fixed& Fixed:: max(const Fixed&  a, const Fixed& b)
         return a;
     else 
         return b;
+}
+
+std::ostream&    operator<<(std::ostream &obj, const Fixed &other)
+{
+    obj << other.toFloat();
+    return (obj);
 }

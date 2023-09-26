@@ -7,7 +7,7 @@ class Fixed
 {
     private:
         int numberValue;
-        static const int numberFranctional;
+        static const int numberFranctional = 8;
     public:
         Fixed();
         Fixed(const int n);

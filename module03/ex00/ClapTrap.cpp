@@ -6,7 +6,7 @@ ClapTrap::ClapTrap(const std::string& target)
     HitPoints = 10;
     EnergyPoints = 10;
     AttackDamage = 0;
-   std::cout<<"Default constructor called\n";
+    std::cout<<"Default constructor called\n";
 }
 
 ClapTrap::~ClapTrap()
