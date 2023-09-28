@@ -1,17 +1,15 @@
 #include"ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
-{
+{ 
+    std::cout<<"ClapTrap Default constructor called\n";
+}
+ClapTrap::ClapTrap(const std::string& target):name(target)
+{   
     HitPoints = 10;
     EnergyPoints = 10;
     AttackDamage = 0;
-    std::cout<<"ClapTrap Default constructor called\n";
-}
-
-ClapTrap::ClapTrap(const std::string& target)
-{
     std::cout<<"ClapTrap parametrize constructor called\n";
-    name = target;
 }
 
 ClapTrap::~ClapTrap()
@@ -21,12 +19,16 @@ ClapTrap::~ClapTrap()
 
 ClapTrap::ClapTrap(const ClapTrap& obj)
 {
+    std::cout<<"ClapTrap copy constructor called\n";
     *this = obj;
 }
 
 ClapTrap& ClapTrap::operator =(const ClapTrap& obj)
 {
-    *this = obj;
+    std::cout<<"ClapTrap Copy assignment operator called \n";
+    this->HitPoints = obj.HitPoints;
+    this->EnergyPoints = obj.EnergyPoints;
+    this->AttackDamage = obj.AttackDamage;
     return(*this);
 }
 
@@ -63,3 +65,4 @@ void ClapTrap::beRepaired(unsigned int amount)
     EnergyPoints--;
     std::cout << "ClapTrap " << name << " is repaired for " << amount << " hit points!" << std::endl;
 }
+   

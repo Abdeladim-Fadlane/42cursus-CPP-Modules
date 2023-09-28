@@ -1,16 +1,16 @@
 #include"ClapTrap.hpp"
 #include"ScavTrap.hpp"
-
 ScavTrap::ScavTrap()
 {
-    std::cout<<"ScavTrap constructor called\n";
+    std::cout<<"ScavTrap Default constructor called\n";
+ 
+}
+ScavTrap::ScavTrap(const std::string& target):ClapTrap(target)
+{   
     HitPoints = 100;
     EnergyPoints = 50;
     AttackDamage = 20;
-}
-ScavTrap::ScavTrap(const std::string& target):ClapTrap(target)
-{
-    std::cout<<"ScavTrap parametrized constructor called\n";
+    std::cout<<"ScavTrap parametrize constructor called\n";
 }
 
 ScavTrap::ScavTrap(const ScavTrap& obj) : ClapTrap(obj)

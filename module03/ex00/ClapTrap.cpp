@@ -1,27 +1,35 @@
 #include"ClapTrap.hpp"
-
-ClapTrap::ClapTrap(const std::string& target)
+ClapTrap::ClapTrap()
 {
-    name = target;
     HitPoints = 10;
     EnergyPoints = 10;
     AttackDamage = 0;
-    std::cout<<"Default constructor called\n";
+    std::cout<<"ClapTrap Default constructor called\n";
+}
+ClapTrap::ClapTrap(const std::string& target)
+{
+    std::cout<<"ClapTrap parametrize constructor called\n";
+    name = target;
 }
 
 ClapTrap::~ClapTrap()
 {
-    std::cout<<"Default destructor called\n";
+    std::cout<<"ClapTrap Default destructor called\n";
+    
 }
 
 ClapTrap::ClapTrap(const ClapTrap& obj)
 {
+    std::cout<<"ClapTrap copy constructor called\n";
     *this = obj;
 }
 
 ClapTrap& ClapTrap::operator =(const ClapTrap& obj)
 {
-    *this = obj;
+    std::cout<<"ClapTrap Copy assignment operator called \n";;
+    this->HitPoints = obj.HitPoints;
+    this->EnergyPoints = obj.EnergyPoints;
+    this->AttackDamage = obj.AttackDamage;
     return(*this);
 }
 

@@ -1,17 +1,35 @@
 #include"ClapTrap.hpp"
 #include"ScavTrap.hpp"
-
-ScavTrap::ScavTrap(const std::string& target):ClapTrap(target)
+ScavTrap::ScavTrap()
 {
+    std::cout<<"ScavTrap constructor called\n";
     HitPoints = 100;
     EnergyPoints = 50;
     AttackDamage = 20;
-    std::cout<<"ScavTrap constructor called\n";
 }
+ScavTrap::ScavTrap(const std::string& target):ClapTrap(target)
+{
+    std::cout<<"ScavTrap parametrized constructor called\n";
+}
+
+ScavTrap::ScavTrap(const ScavTrap& obj) : ClapTrap(obj)
+{
+    std::cout<<"ScavTrap copy constactor called\n";
+    *this = obj;
+};
+
+ScavTrap& ScavTrap::operator=(const ScavTrap& obj)
+{
+    std::cout<<"ScavTrap Copy assignment operator called \n";;
+    this->HitPoints = obj.HitPoints;
+    this->EnergyPoints = obj.EnergyPoints;
+    this->AttackDamage = obj.AttackDamage;
+    return(*this);
+};
 
 ScavTrap::~ScavTrap()
 {
-    std::cout<<"ScavTrap constructor called\n";
+    std::cout<<"ScavTrap destructor called\n";
 }
 
 void ScavTrap::guardGate()

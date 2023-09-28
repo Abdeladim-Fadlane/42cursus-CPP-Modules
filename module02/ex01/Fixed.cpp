@@ -43,7 +43,7 @@ Fixed::Fixed(const int n)
 Fixed::Fixed(const float n)
 {
     std::cout<<"Float constructor called\n";
-    this->numberValue = roundf(n * 256);
+    this->numberValue = n * (1 << this->numberFranctional);
 }
 
 float Fixed::toFloat( void ) const

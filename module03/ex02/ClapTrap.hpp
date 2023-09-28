@@ -10,6 +10,7 @@ class ClapTrap
         int EnergyPoints;
         int AttackDamage;
     public:
+        ClapTrap();
         ClapTrap(const std::string& target);
         ClapTrap(const ClapTrap& obj);
         ClapTrap& operator =(const ClapTrap& obj);

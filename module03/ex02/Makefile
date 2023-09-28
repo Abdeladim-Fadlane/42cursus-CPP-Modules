@@ -8,8 +8,11 @@ OBJ = ${CFILES:.cpp=.o}
 all : ${NAME}
 
 
-${NAME} : ${OBJ}
-	@${CXX}   $(OBJ) -o $(NAME) 
+${NAME}: ${OBJ} #compile object and linking get file exutable
+	@${CXX} ${CXXFLAGS} -o $@ $^  
+
+%.o: %.cpp ClapTrap.hpp FragTrap.hpp DiamondTrap.hpp#compile source file into object whitout linking
+	@${CXX} ${CXXFLAGS} -c $< -o $@
 
 clean :
 	@rm -rf ${OBJ}
