@@ -3,7 +3,6 @@
 ScavTrap::ScavTrap()
 {
     std::cout<<"ScavTrap Default constructor called\n";
- 
 }
 ScavTrap::ScavTrap(const std::string& target):ClapTrap(target)
 {   
@@ -42,7 +41,7 @@ void ScavTrap::attack(const std::string& target)
 {
     if(HitPoints <= 0|| EnergyPoints <= 0)
     {
-        std::cout<<"ScavTrap "<<name<<" is already out of hit points can't attak !\n";
+        std::cout<<"ScavTrap "<<name<<" can't attak !\n";
         return;
     } 
     std::cout<<"ScavTrap "<<name<<" attacks " << target<<" ,causing "<<AttackDamage<<" points of damage!\n";

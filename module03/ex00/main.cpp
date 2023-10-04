@@ -1,6 +1,5 @@
 #include"ClapTrap.hpp"
 
-
 int main(void)
 {
     ClapTrap claptrap("BONAWARA");
@@ -13,6 +12,7 @@ int main(void)
     claptrap.attack("ZOBIR");
     claptrap.attack("ZOBIR");
     claptrap.attack("ZOBIR");
+    //claptrap.takeDamage(1);
     claptrap.attack("ZOBIR");
     claptrap.attack("ZOBIR");
     claptrap.attack("ZOBIR");

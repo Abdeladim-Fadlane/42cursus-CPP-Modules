@@ -13,12 +13,14 @@ Dog::~Dog()
 
 Dog::Dog(const Dog& obj):Animal()
 {
+    std::cout<<"Dog copy constractor called\n";
     *this = obj;
 }
 
 Dog& Dog::operator = (const Dog &obj)
 {
-    *this = obj;
+    std::cout<<"Dog copy assignment operator called\n";
+    this->type = obj.type;
     return(*this);
 }
 

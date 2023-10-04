@@ -6,18 +6,25 @@ Cat::Cat()
     type = "Cat";
     std::cout<<"Cat constructor called\n";
 }
+
 Cat::~Cat()
 {
     delete brain;
     std::cout<<"Cat destructor called\n";
 }
+
 Cat::Cat(const Cat& obj):Animal(obj)
 {
+    brain = new Brain();
+    std::cout<<"Cat copy constractor called\n";
     *this = obj;
 }
+
 Cat& Cat::operator = (const Cat &obj)
 {
-    *this = obj;
+    std::cout<<"Cat copy assignment operator called\n";
+    this->type = obj.type;
+    *brain = *obj.brain;
     return(*this);
 }
 

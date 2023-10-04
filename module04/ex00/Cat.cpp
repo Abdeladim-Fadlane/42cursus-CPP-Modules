@@ -11,11 +11,13 @@ Cat::~Cat()
 }
 Cat::Cat(const Cat& obj):Animal(obj)
 {
+    std::cout<<"Cat copy constractor called\n";
     *this = obj;
 }
 Cat& Cat::operator = (const Cat &obj)
 {
-    *this = obj;
+    std::cout<<"Cat copy assignment operator called\n";
+    this->type = obj.type;
     return(*this);
 }
 

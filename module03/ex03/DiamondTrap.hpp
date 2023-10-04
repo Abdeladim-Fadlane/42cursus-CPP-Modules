@@ -4,6 +4,7 @@
 #include<string>
 #include"FragTrap.hpp"
 #include"ScavTrap.hpp"
+
 class DiamondTrap : public  FragTrap, public ScavTrap
 {
     private:
@@ -14,6 +15,6 @@ class DiamondTrap : public  FragTrap, public ScavTrap
         DiamondTrap(const DiamondTrap& obj);
         DiamondTrap& operator =(const DiamondTrap& obj);
         ~DiamondTrap();
-       void whoAmI();
+        void whoAmI();
 };
 #endif

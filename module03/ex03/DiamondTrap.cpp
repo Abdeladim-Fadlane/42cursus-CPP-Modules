@@ -3,7 +3,6 @@
 
 DiamondTrap::DiamondTrap()
 {    
- 
     std::cout<<"DiamondTrap Default constructor called\n";
 }
 
@@ -18,7 +17,6 @@ DiamondTrap::DiamondTrap(const std::string& target):ScavTrap(target)
 
 DiamondTrap::~DiamondTrap()
 {
-
     std::cout<<"DiamondTrap destructor called\n";
 }
 
@@ -41,7 +39,4 @@ void DiamondTrap::whoAmI()
 {
     std::cout<<"DiamondTrap name is :"<<this->name<<"\n";
     std::cout<<"ClapTrap    name is :"<<ClapTrap::name<<"\n";
-    // std::cout<<FragTrap::HitPoints<<"\n";
-    // std::cout<<FragTrap::EnergyPoints<<"\n";
-    // std::cout<<FragTrap::AttackDamage<<"\n";
 }

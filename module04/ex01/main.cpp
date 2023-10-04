@@ -7,9 +7,10 @@ int main()
     {
         x[i]->makeSound(); 
         delete x[i];      
-    }
-    // const Animal* j = new Dog();
-    // const Animal* i = new Cat();
-    // delete j;//should not create a leak
-    // delete i;
+    } 
+    // Cat a;
+    // Cat b = a;
+    // ///////test shallow copy and deep copie
+    // Cat c;
+    // c = a;
 }

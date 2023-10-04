@@ -18,6 +18,6 @@ int main(void)
     x.attack("ZOBIR");
     x.attack("ZOBIR");
     x.attack("ZOBIR");
-    //x.guardGate();
-    //x.whoAmI();
+    x.guardGate();
+    x.whoAmI();
 }

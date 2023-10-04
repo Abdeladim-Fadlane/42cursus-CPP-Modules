@@ -1,4 +1,4 @@
-NAME = FragTrap
+NAME = ScavTrap
 CXX = c++
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 CFILES = main.cpp ClapTrap.cpp ScavTrap.cpp
