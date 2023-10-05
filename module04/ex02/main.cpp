@@ -8,8 +8,14 @@ int main()
         x[i]->makeSound(); 
         delete x[i];      
     }
-    // const Animal* j = new Dog();
-    // const Animal* i = new Cat();
-    // delete j;//should not create a leak
-    // delete i;
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+
+    delete j;//should not create a leak
+    delete i;
+
+    //Animal Eagle;
+    //Animal *ptr = new Dog;
+    // Animal *ptr1 = new Dog;
+    // *ptr1 = *ptr;
 }

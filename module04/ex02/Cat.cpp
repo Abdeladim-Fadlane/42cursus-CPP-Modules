@@ -15,6 +15,7 @@ Cat::~Cat()
 
 Cat::Cat(const Cat& obj):Animal(obj)
 {
+    brain = new Brain();
     std::cout<<"Cat copy constractor operator called\n";
     *this = obj;
 }
@@ -23,7 +24,7 @@ Cat& Cat::operator = (const Cat &obj)
 {
     std::cout<<"Cat copy assignment operator called\n";
     this->type = obj.type;
-    brain = *obj.brain;
+    *brain = *obj.brain;
     return(*this);
 }
 

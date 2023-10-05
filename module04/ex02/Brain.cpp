@@ -2,7 +2,6 @@
 
 Brain::Brain()
 {
-
     std::cout<<"Brain constructor called\n";
 }
 

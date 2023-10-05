@@ -40,5 +40,5 @@ std::string Dog::getType()const
 
 void Dog::makeSound()const
 {
-    std::cout << "The dog barks: Woof woof!\n" << std::endl;
+    std::cout << "The dog barks: Woof woof!\n";
 }
