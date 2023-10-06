@@ -7,7 +7,10 @@ OBJ = ${CFILES:.cpp=.o}
 all : ${NAME}
 
 ${NAME} : ${OBJ}
-	@${CXX}   $(OBJ) -o $(NAME) 
+	${CXX} ${CXXFLAGS} -o $@ $^ 
+
+%.o: %.cpp %.hpp
+	${CXX} ${CXXFLAGS} -c $< 
 
 clean :
 	@rm -rf ${OBJ}

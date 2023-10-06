@@ -2,20 +2,16 @@
 #include"Dog.hpp"
 int main()
 {
-    const Animal* x[2] = {new Cat(),new Dog()};
-    for (int i = 0; i < 2; ++i)
-    {
-        x[i]->makeSound(); 
-        delete x[i];      
-    }
-    const Animal* j = new Dog();
-    const Animal* i = new Cat();
+    // Animal Eagle;
+    // const Animal* x[2] = {new Cat(),new Dog()};
+    // for (int i = 0; i < 2; ++i)
+    // {
+    //     x[i]->makeSound(); 
+    //     delete x[i];      
+    // }
+    // const Animal* j = new Dog();
+    // const Animal* i = new Cat();
 
-    delete j;//should not create a leak
-    delete i;
-
-    //Animal Eagle;
-    //Animal *ptr = new Dog;
-    // Animal *ptr1 = new Dog;
-    // *ptr1 = *ptr;
+    // delete j;//should not create a leak
+    // delete i;
 }
