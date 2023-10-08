@@ -4,7 +4,8 @@ AMateria::AMateria()
 }
 
 AMateria::AMateria(std::string const &type) : type(type) {}
-AMateria::AMateria(const AMateria& obj) :AMateria(obj)
+
+AMateria::AMateria(const AMateria& obj)
 {
     *this = obj;
 }

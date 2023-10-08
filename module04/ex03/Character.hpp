@@ -6,15 +6,19 @@
 class Character : public ICharacter
 {
     private:
-        AMateria *slot[4];
+        AMateria *_inventory[4];
+        std::string _name;
+        bool isFull(AMateria** m);
+        AMateria *tmp;
     public:
         Character();
         Character(const Character& obj);
         Character& operator=(const Character &obj);
+        Character(const std::string & name);
         ~Character();
         std::string const & getName() const;
         void equip(AMateria* m);
         void unequip(int idx) ;
-        void use(int idx, ICharacter& target);
+        void use(int idx, ICharacter& target);    
 };
 #endif
