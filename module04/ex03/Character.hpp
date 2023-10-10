@@ -9,7 +9,8 @@ class Character : public ICharacter
         AMateria *_inventory[4];
         std::string _name;
         bool isFull(AMateria** m);
-        AMateria *tmp;
+        AMateria *tmp[4];
+        int *ptr; 
     public:
         Character();
         Character(const Character& obj);

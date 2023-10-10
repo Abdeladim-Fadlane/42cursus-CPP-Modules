@@ -1,4 +1,5 @@
 #include"MateriaSource.hpp"
+
 MateriaSource::MateriaSource()
 {
     for(int i = 0;i < 4 ;i++)
@@ -6,6 +7,7 @@ MateriaSource::MateriaSource()
         _MateriaS[i] = NULL;
     }
 }
+
 MateriaSource::MateriaSource(const MateriaSource& obj)
 {
     *this = obj;
@@ -26,7 +28,10 @@ MateriaSource& MateriaSource::operator=(const MateriaSource &obj)
 
 MateriaSource::~MateriaSource()
 {
-
+    for (int i = 0; i < 4; i++)
+    {
+        delete _MateriaS[i];
+    }
 }
 
 bool MateriaSource::isFull(AMateria** m)
@@ -59,9 +64,9 @@ void MateriaSource::learnMateria(AMateria* m)
 
 AMateria* MateriaSource::createMateria(std::string const & type) 
 {
-    for(int i = 0;i < 4 ;i++)
+    for(int  i = 0;i < 4;i++)
     {
-        if(_MateriaS[i]->getType() == type)
+        if(_MateriaS[i] &&_MateriaS[i]->getType() == type)
             return(_MateriaS[i]->clone());
     }
     return(NULL);
