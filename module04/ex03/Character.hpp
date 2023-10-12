@@ -6,11 +6,10 @@
 class Character : public ICharacter
 {
     private:
-        AMateria *_inventory[4];
         std::string _name;
+        AMateria *tmp;
+        AMateria *_inventory[4];
         bool isFull(AMateria** m);
-        AMateria *tmp[4];
-        int *ptr; 
     public:
         Character();
         Character(const Character& obj);

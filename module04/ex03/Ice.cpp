@@ -1,6 +1,7 @@
 #include"Ice.hpp"
 
 Ice::Ice() : AMateria("ice") {}
+
 Ice::Ice(const Ice& obj) :AMateria(obj)
 {
     *this = obj;
