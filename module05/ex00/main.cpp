@@ -15,7 +15,7 @@ int main()
 
         A.increment();
         std::cout << "Incremented Grade: " << A.getGrade() << std::endl;
-                A.decrement();
+        A.decrement();
 
         std::cout << "Decremented Grade: " << A.getGrade() << std::endl;
 
@@ -24,10 +24,9 @@ int main()
 
         A.decrement();
         std::cout << "Decremented Grade: " << A.getGrade() << std::endl;
-        
     }
     catch (const std::exception & e)
     {
         std::cerr << "Exception: " << e.what()<<std::endl;
     }  
-} 
+}

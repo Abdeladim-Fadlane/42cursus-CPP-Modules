@@ -31,7 +31,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const & executor)const
     if(executor.getGrade() <= getGradeToExcute())
     {
         std::srand(std::time(NULL));
-        std::cout<<"Makes some drilling noises\n";
+        system( "afplay ~/Desktop/sound.wav");
         if( std::rand() % 2 == 0)
             std::cout << "\x1B[32m" << _target << " Form has been robotomized successfully" << "\x1B[0m" << std::endl;
         else

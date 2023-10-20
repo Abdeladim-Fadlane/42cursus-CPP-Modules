@@ -26,6 +26,6 @@ class Bureaucrat
         void decrement();
         void signForm(Form &form);
 };
-std::ostream& operator<<(std::ostream &obj,const Bureaucrat &other);
 
+std::ostream& operator<<(std::ostream &obj,const Bureaucrat &other);
 #endif
