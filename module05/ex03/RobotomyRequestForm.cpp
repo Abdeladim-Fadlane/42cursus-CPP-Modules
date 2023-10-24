@@ -1,18 +1,21 @@
 #include"RobotomyRequestForm.hpp"
 
  
-RobotomyRequestForm::RobotomyRequestForm():AForm()
+RobotomyRequestForm::RobotomyRequestForm():AForm("RobotomyRequestForm",72,45)
 {
 
 };
+
 RobotomyRequestForm::~RobotomyRequestForm()
 {
 
 };
+
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm&other):AForm(other)
 {
     *this = other;
 };
+
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) :AForm("RobotomyRequestForm",72,45)
 {
     this->_target = target;

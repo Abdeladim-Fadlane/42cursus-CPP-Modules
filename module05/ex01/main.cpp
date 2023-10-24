@@ -8,8 +8,6 @@ int main()
         Form b("Leet certificate.",102, 1);
         a.signForm(b);
         std::cout<<a;
-        // std::cout<<b;
-
     }
     catch (const std::exception & e)
     {

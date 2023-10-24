@@ -4,15 +4,15 @@ Form::Form():_gradeToSign(10),_gradeToExecute(10)
 {
     this->_signed = 0;
 };
+
 Form::~Form()
 {
 
 };
 
-Form::Form(const Form&other):_gradeToSign(10),_gradeToExecute(10)
+Form::Form(const Form & other):_name(other._name),_gradeToSign(other._gradeToSign),_gradeToExecute(other._gradeToExecute)
 {
-    this->_signed = 0;
-    *this = other;
+    this->_signed = other._signed;
 }
 
 Form &Form::operator=(const Form&other)

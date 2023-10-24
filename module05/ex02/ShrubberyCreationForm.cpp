@@ -1,18 +1,21 @@
 #include"ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm():AForm()
+ShrubberyCreationForm::ShrubberyCreationForm():AForm("ShrubberyCreationForm",145,137)
 {
 
 };
+
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 
 };
+
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm&other):AForm(other)
 {
     *this = other;
 };
+
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) :AForm("ShrubberyCreationForm",145,137)
 {
     this->_target = target;
