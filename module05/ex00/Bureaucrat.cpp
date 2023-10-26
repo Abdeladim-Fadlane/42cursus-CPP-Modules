@@ -34,6 +34,7 @@ const std::string Bureaucrat::getName()const
 
 Bureaucrat::~Bureaucrat()
 {
+    std::cout<<"from destractor \n";
 }
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
