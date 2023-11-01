@@ -78,7 +78,9 @@ int main()
     {
         std::cout<<str[i]<<" ";
     }
-    std::cout<<"\n";
+    
+    std::cout<<std::endl<<str.size()<<"\n";
+    
     // {
     //     __main();
     // }

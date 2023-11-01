@@ -4,11 +4,11 @@
 #include<iostream>
 
 
-template <typename T, typename U, typename N>
+template <typename T, typename N>
 
-void iter(T addressArray[], U lengthArray, N func)
+void iter(T addressArray[], unsigned int lengthArray, N func)
 {
-    for (U i = 0; i < lengthArray; i++)
+    for (unsigned int i = 0; i < lengthArray; i++)
     {
         func(addressArray[i]); 
     }
