@@ -1,7 +1,7 @@
-NAME = ex000
+NAME = ex01
 
 CXXFLAGS = -Wall -Wextra -Werror  -std=c++98
-CFILES = main.cpp main.cpp
+CFILES = main.cpp Span.cpp
 CXX = c++
 OBJ = ${CFILES:.cpp=.o}
 
@@ -10,7 +10,7 @@ all :${NAME}
 ${NAME} : ${OBJ}
 	${CXX} ${CXXFLAGS} -o $@ $^
 	
-%.o:%.cpp Template.hpp
+%.o:%.cpp Span.hpp
 	${CXX} ${CXXFLAGS} -c $<
 
 clean :
