@@ -12,7 +12,6 @@ Span::Span(const Span & other)
 
 Span& Span::operator=(const Span &other)
 {
-    std::vector<unsigned int >::const_iterator it;
     this->_N = other._N;
     this->_container = other._container;// Using the assignment operator of std::vector for a deep copy
     return *this;
@@ -26,6 +25,7 @@ Span::Span(unsigned int N)
 {
     this->_N = N;
 }
+
 void    Span::addNumber(unsigned int N)
 {    
     if( _container.size() >= _N)
@@ -56,14 +56,24 @@ unsigned int Span::shortestSpan() const
 
     std::vector<unsigned int> sortedContainer = _container;
     std::sort(sortedContainer.begin(), sortedContainer.end());
-
+    
     unsigned int shortestSpan = UINT_MAX; 
     unsigned int currentSpan;
-    for (size_t i = 1; i < sortedContainer.size(); i++)
+    std::vector<unsigned int>::const_iterator it;
+    for (it  = sortedContainer.begin() + 1; it != sortedContainer.end(); it++)
     {
-        currentSpan = sortedContainer[i] - sortedContainer[i - 1];
+        currentSpan = *it - *(it - 1);
         if (currentSpan < shortestSpan)
             shortestSpan = currentSpan;
     }
     return shortestSpan;
+}
+
+
+void Span::display()
+{
+    std::vector<unsigned int >::const_iterator it;
+    for(it = _container.begin();it != _container.end();it++)
+        std::cout<<*it<<" ";
+    std::cout<<"\n";
 }

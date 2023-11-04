@@ -14,7 +14,7 @@ int main(int ,char **)
         sp.addNumber(17);
         sp.display();
 
-        unsigned int arr[] = {25, 7, 50, 44,22,3};
+        unsigned int arr[] = {25, 7, 50, 44,22,333};
         sp.addRangeNumber(arr,arr + 6);
         sp.display();
         std::cout << sp.shortestSpan() << std::endl;

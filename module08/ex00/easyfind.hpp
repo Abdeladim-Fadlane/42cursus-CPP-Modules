@@ -9,7 +9,7 @@ template <typename T, typename U>
 U easyfind(const T& container, U value)
 {
     typename T::const_iterator it;
-    for (it = container.begin(); it <container.end(); it++)
+    for (it = container.begin(); it != container.end(); it++)
     {
         if (*it == value)
             return *it;

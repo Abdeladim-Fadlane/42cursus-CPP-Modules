@@ -10,7 +10,7 @@ all :${NAME}
 ${NAME} : ${OBJ}
 	${CXX} ${CXXFLAGS} -o $@ $^
 	
-%.o:%.cpp Span.hpp
+%.o:%.cpp MutantStack.hpp
 	${CXX} ${CXXFLAGS} -c $<
 
 clean :
