@@ -2,19 +2,18 @@
 
 int main()
 {
-    std::vector<std::string> A ;
-    A.push_back("13");
-    A.push_back("37");
-    A.push_back("1337");
-    std::string c;
-    std::string str = "1337";
-    try
-    {
-        c = easyfind(A, str);
-        std::cout << "Value found: " << c << std::endl;
-    } catch (const std::out_of_range& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+    std::vector<int> A ;
+    A.push_back(13);
+    A.push_back(37);
+    A.push_back(37);
+    
+    std::list<int> B;
+    B.push_back(2);
+    B.push_back(4);
+    B.push_back(42);
+
+    easyfind(A,37);
+    easyfind(B,37);
+
     return 0;
 }

@@ -3,18 +3,17 @@
 
 #include<iostream>
 #include <vector>
-#include<string.h>
+#include<algorithm>
+#include<list>
+template <typename T>
 
-template <typename T, typename U>
-U easyfind(const T& container, U value)
+void easyfind(const T& container, int value)
 {
-    typename T::const_iterator it;
-    for (it = container.begin(); it != container.end(); it++)
-    {
-        if (*it == value)
-            return *it;
-    }
-    throw std::out_of_range("No occurrence found");
+    typename T::const_iterator it = std::find(container.begin(),container.end(),value);
+    if(it != container.end())
+         std::cout<<*it<<": value is found .\n";
+    else
+        std::cerr<<value<<": value not found .\n";
 }
 
 #endif

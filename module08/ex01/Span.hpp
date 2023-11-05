@@ -17,8 +17,8 @@ class Span
         Span(const Span & other);
         Span& operator=(const Span &other);
         void    addNumber(unsigned int);
-        unsigned int shortestSpan()const;
-        unsigned int longestSpan()const;
+        unsigned int shortestSpan();
+        unsigned int longestSpan();
         void display();
         template <typename I>void  addRangeNumber(I start,I last)
         {

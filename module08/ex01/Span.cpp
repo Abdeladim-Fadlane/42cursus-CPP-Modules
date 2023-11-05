@@ -13,7 +13,7 @@ Span::Span(const Span & other)
 Span& Span::operator=(const Span &other)
 {
     this->_N = other._N;
-    this->_container = other._container;// Using the assignment operator of std::vector for a deep copy
+    this->_container = other._container;
     return *this;
 }
 
@@ -30,45 +30,39 @@ void    Span::addNumber(unsigned int N)
 {    
     if( _container.size() >= _N)
         throw std::out_of_range("container is full.");
-    std::vector<unsigned int>::const_iterator it;
-    for(it = _container.begin();it != _container.end();it++)
-    { 
-        if(*it == N)
-            throw std::out_of_range("The element is already exit .");
-    }
-     _container.push_back(N);
-    
+    std::vector<unsigned int>::const_iterator it ;
+    it = std::find(_container.begin(),_container.end(),N);
+    if(it !=_container.end())
+        throw std::out_of_range("The element is already exit .");
+     _container.push_back(N);   
 }
 
-unsigned int Span::longestSpan()const
+unsigned int Span::longestSpan()
 {
     if(_container.size() <= 1)
         throw std::out_of_range("no span can be found.");
-    std::vector<unsigned int> sortedContainer = _container;
-    std::sort(sortedContainer.begin(),sortedContainer.end());
-    return(sortedContainer[sortedContainer.size() -1] - sortedContainer[0]);
+    std::sort(_container.begin(),_container.end());
+    return(*(_container.end() - 1) - *(_container.begin()));
 }
 
-unsigned int Span::shortestSpan() const
+unsigned int Span::shortestSpan() 
 {
     if(_container.size() <= 1)
         throw std::out_of_range("No span can be found\n");
 
-    std::vector<unsigned int> sortedContainer = _container;
-    std::sort(sortedContainer.begin(), sortedContainer.end());
+    std::sort(_container.begin(), _container.end());
     
     unsigned int shortestSpan = UINT_MAX; 
-    unsigned int currentSpan;
+    unsigned int someSpan;
     std::vector<unsigned int>::const_iterator it;
-    for (it  = sortedContainer.begin() + 1; it != sortedContainer.end(); it++)
+    for (it  = _container.begin() + 1; it != _container.end(); it++)
     {
-        currentSpan = *it - *(it - 1);
-        if (currentSpan < shortestSpan)
-            shortestSpan = currentSpan;
+        someSpan = *it - *(it - 1);
+        if (someSpan < shortestSpan)
+            shortestSpan = someSpan;
     }
     return shortestSpan;
 }
-
 
 void Span::display()
 {
