@@ -20,14 +20,7 @@ class Span
         unsigned int shortestSpan();
         unsigned int longestSpan();
         void display();
-        template <typename I>void  addRangeNumber(I start,I last)
-        {
-            while(start != last)
-            {
-                addNumber(*start);
-                start++;
-            }
-        }
+        void addRangeNumber(unsigned int arr[],unsigned int len);
 };
 
 #endif

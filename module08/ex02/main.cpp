@@ -11,15 +11,15 @@ void list()
     list.push_back(3);
     list.push_back(5);
     list.push_back(737);
-    list.push_back(0);
-    std::list<int>::iterator it1 = list.begin();
-    std::list<int>::iterator ite1 = list.end();
-    ++it1;
-    --it1;
-    while(it1 != ite1)
+    list.push_back(10);
+    std::list<int>::iterator it = list.begin();
+    std::list<int>::iterator ite = list.end();
+    ++it;
+    --it;
+    while(it != ite)
     {
-        std::cout<<*it1<<"\n";
-        ++it1;
+        std::cout<<*it<<"\n";
+        ++it;
     }
     std::list<int> a(list);
 }
@@ -36,7 +36,7 @@ int main(int ,char **)
     mstack.push(5);
     mstack.push(737);
     //[...]
-    mstack.push(0);
+    mstack.push(10);
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
     ++it;
@@ -47,7 +47,7 @@ int main(int ,char **)
         ++it;
     }
     std::stack<int> s(mstack);
-    ///////////////////////underlyning/////////////////////////
+    ///////////////////////underlying/////////////////////////
     list();
 }
 
