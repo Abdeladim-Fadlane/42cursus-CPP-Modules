@@ -3,6 +3,7 @@
 int main()
 {
     std::vector<int> A ;
+
     A.push_back(13);
     A.push_back(37);
     A.push_back(37);
