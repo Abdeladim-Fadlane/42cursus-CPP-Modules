@@ -13,10 +13,7 @@ class BitcoinExchange
         std::map<std::string,std::string> _map;
     public:
         BitcoinExchange(){};
-        ~BitcoinExchange()
-        {
-        
-        }
+        ~BitcoinExchange(){};
         //BitcoinExchange(const BitcoinExchange &other);
         // BitcoinExchange &operator=(const BitcoinExchange& other);
         bool is_digits(const std::string &str)
@@ -68,7 +65,6 @@ class BitcoinExchange
                     std::map<std::string,std::string>::const_iterator it;
                     it = this->_map.lower_bound(key);
                     float num = atof(it->second .c_str()) * atof(value.c_str());
-                
                     std::cout<<key<<" => " << value <<" = "<< num<<std::endl;   
                 }
             }
