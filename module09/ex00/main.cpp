@@ -7,6 +7,7 @@ int main(int ac,char *argv[])
         BitcoinExchange btc;
         btc.scrapingData();
         btc.openFile(argv[1]);
+        BitcoinExchange b(btc);
     }
     else
         std::cerr<<"Error could not open file.\n";
