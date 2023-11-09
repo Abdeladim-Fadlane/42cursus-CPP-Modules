@@ -18,4 +18,5 @@ class RPN
         RPN& operator=(const RPN& other);
         void ReversePolishNotation(const std::string &);
 };
+int operation(int N,int M,char c);
 #endif
