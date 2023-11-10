@@ -8,12 +8,13 @@
 #include <string>
 #include <stack>
 #include <stdexcept>
+#include <sstream>
+
 class RPN
 {
     private:
-        int flag;
-        std::stack<int> _stack;
-        int operation(int N,int M,char c);
+        std::stack<double> _stack;
+        double operation(double N,double M,char c);
     public:
         RPN();
         ~RPN();
@@ -25,8 +26,12 @@ class RPN
             private :
                 std::string error;
             public :
+                ErrorException();
                 ErrorException(const std::string &str);
+                ErrorException(const ErrorException &other);
+                ErrorException&operator=(const ErrorException &other);
                 const char *what() const throw();
+                virtual ~ErrorException() throw();
         };
 };
 
