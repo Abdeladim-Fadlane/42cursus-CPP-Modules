@@ -1,6 +1,6 @@
 NAME = RPN
 
-CXXFLAGS = -Wall -Wextra -Werror  #-std=c++98 -fsanitize=address
+CXXFLAGS = -Wall -Wextra -Werror  #-std=c++98 -fsanitize=address -g3
 CFILES = main.cpp RPN.cpp
 CXX = c++
 OBJ = ${CFILES:.cpp=.o}
