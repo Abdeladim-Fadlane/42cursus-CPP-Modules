@@ -1,0 +1,1 @@
+make -s && ./PmergeMe `shuf -i 1-10 -n 10 | tr "\n" " "`
