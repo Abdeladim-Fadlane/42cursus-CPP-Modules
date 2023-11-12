@@ -23,3 +23,5 @@ class Fixed
 
 std::ostream    &operator<<(std::ostream &o, const Fixed &other);
 #endif
+
+std::cout<<

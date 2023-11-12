@@ -8,6 +8,8 @@ int main(int ac,char *argv[])
         {   
             PmergeMe Pmg;
             Pmg.parcingData(argv,ac);
+            Pmg.mergeInsert();
+            Pmg.displayInfo();
         }
         catch(const std::exception& e)
         {

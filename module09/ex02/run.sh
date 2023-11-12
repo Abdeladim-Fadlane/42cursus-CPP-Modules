@@ -1,1 +1,1 @@
-make -s && ./PmergeMe `shuf -i 1-10 -n 10 | tr "\n" " "`
+make -s && ./PmergeMe `shuf -i 1-500000 -n 10000 | tr "\n" " "`
