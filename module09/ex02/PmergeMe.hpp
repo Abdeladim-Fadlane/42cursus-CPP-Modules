@@ -16,7 +16,7 @@ class PmergeMe
         std::vector<unsigned int> _vector;
         std::vector<unsigned int > smallEst;
         std::deque<unsigned int> _deque;
-        std::time_t current_time;
+        double current_time;
         void    createPairs(std::vector<std::pair<unsigned int ,unsigned int> > &vec);
     public:
         PmergeMe();

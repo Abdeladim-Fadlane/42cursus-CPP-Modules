@@ -83,16 +83,19 @@ void PmergeMe::findAndInsert(std::vector<unsigned int > &smallEst,std::vector<un
         smallEst.insert(iterator,*it);
     }
 }
+double getTime()
+{
+    struct timeval currentTime;
+    gettimeofday(&currentTime, NULL);
+    return((currentTime.tv_sec *1000.0  ) + (currentTime.tv_usec/1000.0 ));
+}
 
 void PmergeMe::mergeInsert()//DIVEDE AND CONQUER[...]//
 {
     std::vector<std::pair<unsigned int ,unsigned int> > vec;
     createPairs(vec);
     swapContainer(vec);
-    struct timeval currentTime;
-    gettimeofday(&currentTime, NULL);
-
-    current_time = currentTime.tv_sec + (currentTime.tv_usec / 1e6);
+    current_time = getTime();
     std::vector<unsigned int > largEst;
     for (std::vector<std::pair<unsigned int ,unsigned int> >::iterator it = vec.begin(); it != vec.end(); ++it)
     {
@@ -121,22 +124,20 @@ void recursivelySort(std::vector<unsigned int> &vec)
     }
 }
 
+
 void PmergeMe::displayInfo()
 {
-    struct timeval currentTime;
-    gettimeofday(&currentTime, NULL);
-
     std::cout <<"Befor: ";
     for ( std::vector<unsigned int>::iterator it = _vector.begin(); it != _vector.end(); ++it)
     {
-        std::cout << *it <<" ";
+         std::cout << "\033[31m" << *it << " \033[0m";
     }
     std::cout<<"\n"<<"After: ";
     for ( std::vector<unsigned int>::iterator it = smallEst.begin(); it != smallEst.end(); ++it)
     {
-        std::cout << *it <<" ";
+        std::cout << "\033[32m" << *it << " \033[0m";
     }
     std::cout<<"\n";
     std::cout<<"Time to process a range of "<< _vector.size() <<" elements with std::vector: "
-    << currentTime.tv_sec + (currentTime.tv_usec / 1e6) - current_time <<" us\n";
+    << (getTime() - current_time) <<" us\n";
 }
