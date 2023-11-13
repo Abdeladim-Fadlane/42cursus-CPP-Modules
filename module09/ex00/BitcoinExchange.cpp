@@ -39,6 +39,7 @@ void BitcoinExchange::scrapingData()
     }
     _dataBase.close();
 }
+
 void BitcoinExchange::openFile(char *file)
 {
     std::string line;
