@@ -1,6 +1,7 @@
 #include"PmergeMe.hpp"
-
-PmergeMe::PmergeMe():odd(-1),flag(0){}
+double PmergeMe::odd = -1;
+int PmergeMe::flag = 0; 
+PmergeMe::PmergeMe(){}
 PmergeMe::~PmergeMe(){};
 PmergeMe::ErrorException::ErrorException(){};
 PmergeMe::ErrorException::~ErrorException() throw() {};
@@ -43,10 +44,11 @@ void PmergeMe::parcingData(char **argv ,int ac)
         }
         i++;
     }
+    this->_size = _vector.size();
 }
 
 
-void    PmergeMe::createPairs(std::vector<std::pair<unsigned int ,unsigned int> > &vec)
+void    PmergeMe::createPairsVec(std::vector<std::pair<unsigned int ,unsigned int> > &vec)
 {
     std::vector<unsigned int >::iterator it;
     if(_vector.size() % 2 != 0)
@@ -60,54 +62,45 @@ void    PmergeMe::createPairs(std::vector<std::pair<unsigned int ,unsigned int> 
     }
 }
 
-void    swapContainer(std::vector<std::pair<unsigned int ,unsigned int> > &vec)
+void    PmergeMe::createPairsDeq(std::deque<std::pair<unsigned int ,unsigned int> > &vec)
 {
-    for (std::vector<std::pair<unsigned int ,unsigned int> >::iterator it = vec.begin(); it != vec.end(); ++it)
+    std::vector<unsigned int >::iterator it;
+    if(_vector.size() % 2 != 0)
+    {
+        odd = _vector.back();
+        flag = 1;
+    }
+    for(it = _vector.begin();it != _vector.end() - flag ;it += 2)
+    {
+        vec.push_back(std::make_pair((*it),*(it + 1)));
+    }
+}
+
+template<class T> void    swapContainer(T &vec)
+{
+    for (typename T::iterator it = vec.begin(); it != vec.end(); ++it)
     {
         if(it->first > it->second)
             std::swap(it->second,it->first); 
     }
 }
 
-void PmergeMe::findAndInsert(std::vector<unsigned int > &smallEst,std::vector<unsigned int > &largEst)
+template<class T>void  findAndInsert(T&smallEst,T&largEst)
 {
-    std::vector<unsigned int>::iterator iterator;
-    if (flag == 1)
+    typename T::iterator iterator;
+    if (PmergeMe::getflage() == 1)
     {
-        iterator = std::lower_bound(smallEst.begin(), smallEst.end(),odd);
-        smallEst.insert(iterator,odd);
+        iterator = std::lower_bound(smallEst.begin(), smallEst.end(),PmergeMe::getOdd());
+        smallEst.insert(iterator,PmergeMe::getOdd());
     }
-    for ( std::vector<unsigned int>::iterator it = largEst.begin(); it != largEst.end(); ++it)
+    for ( typename T::iterator it = largEst.begin(); it != largEst.end(); ++it)
     {
         iterator = std::lower_bound(smallEst.begin(), smallEst.end(),*it);
         smallEst.insert(iterator,*it);
     }
 }
-double getTime()
-{
-    struct timeval currentTime;
-    gettimeofday(&currentTime, NULL);
-    return((currentTime.tv_sec *1000.0  ) + (currentTime.tv_usec/1000.0 ));
-}
 
-void PmergeMe::mergeInsert()//DIVEDE AND CONQUER[...]//
-{
-    std::vector<std::pair<unsigned int ,unsigned int> > vec;
-    createPairs(vec);
-    swapContainer(vec);
-    current_time = getTime();
-    std::vector<unsigned int > largEst;
-    for (std::vector<std::pair<unsigned int ,unsigned int> >::iterator it = vec.begin(); it != vec.end(); ++it)
-    {
-        smallEst.push_back(it->first);
-        largEst.push_back(it->second);
-    }
-
-    recursivelySort(smallEst);
-    findAndInsert(smallEst,largEst);
-}
-
-void recursivelySwap(std::vector<unsigned int> &vec, std::vector<unsigned int>::iterator it)
+template<class T>void recursivelySwap(T &vec,typename T::iterator it)
 {
     if (it != vec.begin() && *it < *(it - 1))
     {
@@ -116,14 +109,51 @@ void recursivelySwap(std::vector<unsigned int> &vec, std::vector<unsigned int>::
     }
 }
 
-void recursivelySort(std::vector<unsigned int> &vec)
+template<class T> void recursivelySort(T &vec)
 {
-    for (std::vector<unsigned int>::iterator it = vec.begin() + 1; it != vec.end(); ++it)
+    for (typename T::iterator it = vec.begin() + 1; it != vec.end(); ++it)
     {
         recursivelySwap(vec, it);
     }
 }
 
+double PmergeMe::getTime()
+{
+    struct timeval currentTime;
+    gettimeofday(&currentTime, NULL);
+    return((currentTime.tv_sec * 1000 ) + (currentTime.tv_usec ));
+}
+
+void PmergeMe::mergeInsertVector()//DIVEDE AND CONQUER[...]//
+{
+    std::vector<std::pair<unsigned int ,unsigned int> > vec;
+    createPairsVec(vec);
+    swapContainer(vec);
+    std::vector<unsigned int > largEst;
+    for (std::vector<std::pair<unsigned int ,unsigned int> >::iterator it = vec.begin(); it != vec.end(); ++it)
+    {
+        smallEst.push_back(it->first);
+        largEst.push_back(it->second);
+    }
+    recursivelySort(smallEst);
+    findAndInsert(smallEst,largEst);
+}
+
+void PmergeMe::mergeInsertDeque()//DIVEDE AND CONQUER[...]//
+{
+    std::deque<std::pair<unsigned int ,unsigned int> > vec;
+    createPairsDeq(vec);
+    swapContainer(vec);
+    std::deque<unsigned int > largEst;
+    std::deque<unsigned int > smallEst;
+    for (std::deque<std::pair<unsigned int ,unsigned int> >::iterator it = vec.begin(); it != vec.end(); ++it)
+    {
+        smallEst.push_back(it->first);
+        largEst.push_back(it->second);
+    }
+    recursivelySort(smallEst);
+    findAndInsert(smallEst,largEst);
+}
 
 void PmergeMe::displayInfo()
 {
@@ -138,6 +168,4 @@ void PmergeMe::displayInfo()
         std::cout << "\033[32m" << *it << " \033[0m";
     }
     std::cout<<"\n";
-    std::cout<<"Time to process a range of "<< _vector.size() <<" elements with std::vector: "
-    << (getTime() - current_time) <<" us\n";
 }

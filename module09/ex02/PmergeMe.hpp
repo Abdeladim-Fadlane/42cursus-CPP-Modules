@@ -11,22 +11,36 @@
 class PmergeMe
 {
     private:
-        double odd;
-        int flag;
+        static double odd;
+        static int flag;
+        int _size;
         std::vector<unsigned int> _vector;
         std::vector<unsigned int > smallEst;
         std::deque<unsigned int> _deque;
-        double current_time;
-        void    createPairs(std::vector<std::pair<unsigned int ,unsigned int> > &vec);
+        void    createPairsVec(std::vector<std::pair<unsigned int ,unsigned int> > &vec);
+        void    createPairsDeq(std::deque<std::pair<unsigned int ,unsigned int> > &vec);
     public:
         PmergeMe();
         ~PmergeMe();
         PmergeMe(const PmergeMe& other);
         PmergeMe& operator=(const PmergeMe& other);
         void parcingData(char **argv ,int ac);
-        void mergeInsert();
-        void findAndInsert(std::vector<unsigned int > &smallEst,std::vector<unsigned int > &largEst);
+        static double getOdd()
+        {
+            return odd;
+        }
+        static int getflage()
+        {
+            return flag;
+        }
+        int getSise()const
+        {
+            return _size;
+        }
+        void mergeInsertVector();
+        void mergeInsertDeque();
         void displayInfo();
+        double getTime();
         class ErrorException : public std::exception
         {
             private :
@@ -40,5 +54,5 @@ class PmergeMe
                 virtual ~ErrorException() throw();
         };
 };
-void recursivelySort(std::vector<unsigned int> &vec);
+
 #endif
