@@ -7,40 +7,33 @@
 #include <sstream>
 #include<vector>
 #include <algorithm>
-#include <ctime>
+// #include <ctime>
 class PmergeMe
 {
     private:
-        static double odd;
-        static int flag;
         int _size;
+        static int flag;
+        static unsigned int odd;
+        std::deque<unsigned int> _deque;
         std::vector<unsigned int> _vector;
         std::vector<unsigned int > smallEst;
-        std::deque<unsigned int> _deque;
         void    createPairsVec(std::vector<std::pair<unsigned int ,unsigned int> > &vec);
         void    createPairsDeq(std::deque<std::pair<unsigned int ,unsigned int> > &vec);
     public:
         PmergeMe();
         ~PmergeMe();
-        PmergeMe(const PmergeMe& other);
-        PmergeMe& operator=(const PmergeMe& other);
-        void parcingData(char **argv ,int ac);
-        static double getOdd()
-        {
-            return odd;
-        }
-        static int getflage()
-        {
-            return flag;
-        }
-        int getSise()const
-        {
-            return _size;
-        }
-        void mergeInsertVector();
-        void mergeInsertDeque();
-        void displayInfo();
         double getTime();
+        int getSise()const;
+        void displayInfo();
+        static int getflage();
+        void mergeInsertDeque();
+        void mergeInsertVector();
+        static unsigned int getOdd();
+        PmergeMe(const PmergeMe& other);
+        void vecParcingData(char **argv ,int ac);
+        void dequeParcingData(char **argv ,int ac);
+        PmergeMe& operator=(const PmergeMe& other);
+    
         class ErrorException : public std::exception
         {
             private :

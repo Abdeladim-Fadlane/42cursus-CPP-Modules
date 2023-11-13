@@ -1,5 +1,6 @@
 #include"PmergeMe.hpp"
-double PmergeMe::odd = -1;
+
+unsigned int PmergeMe::odd = 0;
 int PmergeMe::flag = 0; 
 PmergeMe::PmergeMe(){}
 PmergeMe::~PmergeMe(){};
@@ -14,15 +15,20 @@ PmergeMe::ErrorException& PmergeMe::ErrorException::operator=(const ErrorExcepti
     this->error = other.error;
     return *this;
 };
+
 PmergeMe &PmergeMe::operator=(const PmergeMe& other)
 {
     this->_vector.clear();
     this->_vector = other._vector; 
     this->_deque = other._deque;
+    this->odd = other.odd;
+    this->flag = other.flag;
+    this->_size = other._size;
+    this->smallEst = other.smallEst;
     return *this;
 }
 
-void PmergeMe::parcingData(char **argv ,int ac)
+void PmergeMe::vecParcingData(char **argv ,int ac)
 {
     int i = 1;
     char token ;
@@ -37,7 +43,6 @@ void PmergeMe::parcingData(char **argv ,int ac)
             {
                 iss >> n;
                 _vector.push_back(n);//Don't reapeat yourself
-                _deque.push_back(n);
             }
             else
                 throw ErrorException("Error .");
@@ -47,6 +52,29 @@ void PmergeMe::parcingData(char **argv ,int ac)
     this->_size = _vector.size();
 }
 
+void PmergeMe::dequeParcingData(char **argv ,int ac)
+{
+    int i = 1;
+    char token ;
+    while(i < ac)
+    {
+        std::istringstream iss(argv[i]);
+        while(iss >> token)
+        {
+            unsigned int n ;
+            iss.putback(token);
+            if(isdigit(token))
+            {
+                iss >> n;//Don't reapeat yourself
+                _deque.push_back(n);
+            }
+            else
+                throw ErrorException("Error .");
+        }
+        i++;
+    }
+    this->_size = _deque.size();
+}
 
 void    PmergeMe::createPairsVec(std::vector<std::pair<unsigned int ,unsigned int> > &vec)
 {
@@ -64,13 +92,13 @@ void    PmergeMe::createPairsVec(std::vector<std::pair<unsigned int ,unsigned in
 
 void    PmergeMe::createPairsDeq(std::deque<std::pair<unsigned int ,unsigned int> > &vec)
 {
-    std::vector<unsigned int >::iterator it;
-    if(_vector.size() % 2 != 0)
+    std::deque<unsigned int >::iterator it;
+    if(_deque.size() % 2 != 0)
     {
-        odd = _vector.back();
+        odd = _deque.back();
         flag = 1;
     }
-    for(it = _vector.begin();it != _vector.end() - flag ;it += 2)
+    for(it = _deque.begin();it != _deque.end() - flag ;it += 2)
     {
         vec.push_back(std::make_pair((*it),*(it + 1)));
     }
@@ -121,7 +149,7 @@ double PmergeMe::getTime()
 {
     struct timeval currentTime;
     gettimeofday(&currentTime, NULL);
-    return((currentTime.tv_sec * 1000 ) + (currentTime.tv_usec ));
+    return((currentTime.tv_sec * 1000.0 ) + (currentTime.tv_usec / 1000.0));
 }
 
 void PmergeMe::mergeInsertVector()//DIVEDE AND CONQUER[...]//
@@ -168,4 +196,17 @@ void PmergeMe::displayInfo()
         std::cout << "\033[32m" << *it << " \033[0m";
     }
     std::cout<<"\n";
+}
+
+unsigned int  PmergeMe::getOdd()
+{
+    return odd;
+}
+int  PmergeMe::getflage()
+{
+    return flag;
+}
+int  PmergeMe::getSise()const
+{
+    return _size;
 }
