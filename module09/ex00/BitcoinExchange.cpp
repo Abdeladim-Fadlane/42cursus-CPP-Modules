@@ -1,6 +1,7 @@
 #include"BitcoinExchange.hpp"
 
-
+int year = 1;
+int month = 1;
 BitcoinExchange::BitcoinExchange()
 {
 }
@@ -91,56 +92,137 @@ std::map<std::string,std::string>::const_iterator BitcoinExchange::findKey(const
 
 int    BitcoinExchange::checkError(const std::string &key,const std::string &data)
 {
-    if(formatData(key))
+    size_t i  = 0;
+    if(data[0] == ' ')
+        i++;
+    else
     {
-        std::cout<<"Error: bad input => " <<key<<std::endl;
+        std::cout<<"Error: bad value ."<<std::endl;
         return(1);
+    }
+    if(data[1] == '+')
+        i++;
+    while(i <  data.size())
+    {    
+        if(!isdigit(i) && atoi(data .c_str()) < 0)
+        {
+            std::cout<<"Error: not a positive number.\n";
+            return(1);
+        }
+        if(!isdigit(data[i]) ||  atoi(data .c_str()) == 0 || !data[i])
+        {
+            std::cout<<"Error: bad value ."<<std::endl;
+            return(1);
+        }
+        i++;
     }
     if(atof(data .c_str()) >= 1000)
     {
         std::cout<<"Error: too large a number.\n";
         return (1);
     }
-    if(atof(data .c_str()) <= 0 )
+    if(formatData(key) || data[i-1] == ' ')
     {
-        std::cout<<"Error: not a positive number.\n";
+        std::cout<<"Error: bad input => " <<key<<std::endl;
         return(1);
     }
+
     return(0);
 }
+int checkYear(const std::string &date)
+{
+    int i = 0;
+    if(date.size() == 4)
+    {
+        while(i < 4)
+        {
+            if(!isdigit(date[i]))
+                return 1;
+             i++;
+        }
+    }
+    else    
+        return 1;
+    if(atoi(date.c_str()) < 1970 || atoi(date.c_str()) > 2022)
+        return 1;
+    year = atoi(date.c_str());
+    return 0;
+}
 
+int checkMonth(const std::string &date)
+{
+    int i = 0;
+    if(date.size() == 2)
+    {
+        while(i < 2)
+        {
+            if(!isdigit(date[i]))
+                return 1;
+            i++;
+        }
+    }
+    else    
+        return 1;
+    if(atoi(date.c_str()) < 1 || atoi(date.c_str()) > 12)
+        return 1;
+    month = atoi(date.c_str());
+    return 0;
+}
+
+int checkday(const std::string &date)
+{
+    int i = 0;
+    int daysInMonth = 31; 
+    if(date.size() == 3)
+    {
+        while(i < 2)
+        {
+            if(!isdigit(date[i]))
+                return 1;
+             i++;
+        }
+        if(date[2] != ' ')
+            return 1;
+    }
+    else    
+        return 1;
+    
+    if (month == 4 || month == 6 || month == 9 || month == 11)
+        daysInMonth = 30; 
+    else if (month == 2)
+    {
+        if(year % 4 == 0 && (year % 100 != 0 || year % 400 == 0))
+            daysInMonth =  29;//leap year;
+        else
+            daysInMonth = 28; 
+    }
+    if (atoi(date.c_str()) < 1 || atoi(date.c_str() ) > daysInMonth)
+        return 1; 
+    return 0;
+}
 int BitcoinExchange::formatData(const std::string &date)
 {
     int i = 0;
-    int arr[3];
     size_t pos = 0;
     size_t tmp = 0;
 
     while (i < 3)
     {
-        pos = date.find("-", tmp);
+        pos = date.find("-", tmp);//IT'S NOT BIG DEAL ??
         if (pos != std::string::npos)
-            arr[i] = std::atoi(date.substr(tmp, pos).c_str());
+        {
+            if(i == 0 && checkYear(date.substr(tmp, pos)) != 0)
+                return(1);
+            if(i == 1 && checkMonth(date.substr(tmp, pos - tmp))!= 0)
+                return 1;
+        }
         else
-            arr[i] = std::atoi(date.substr(tmp).c_str());
+        {
+            if(checkday(date.substr(tmp))!= 0)
+                return 1;
+        }
         tmp = pos + 1; 
         i++;
     }
-    if(arr[0] < 1970 || arr[0] > 2022)
-        return 1;
-    if(arr[1] < 1 || arr[1] > 12)
-        return 1;
-    int daysInMonth = 31; 
-    if (arr[1] == 4 || arr[1] == 6 || arr[1] == 9 || arr[1] == 11)
-        daysInMonth = 30; 
-    else if (arr[1] == 2)
-    {
-        if(arr[0] % 4 == 0 && (arr[0] % 100 != 0 || arr[0] % 400 == 0))
-            daysInMonth =  29;//leap year;
-        else
-            daysInMonth = 28; 
-    }
-    if (arr[2] < 1 || arr[2] > daysInMonth)
-        return 1; 
     return 0;
 }
