@@ -93,6 +93,7 @@ std::map<std::string,std::string>::const_iterator BitcoinExchange::findKey(const
 int    BitcoinExchange::checkError(const std::string &key,const std::string &data)
 {
     size_t i  = 0;
+    int flag = 0;
     if(data[0] == ' ')
         i++;
     else
@@ -104,16 +105,18 @@ int    BitcoinExchange::checkError(const std::string &key,const std::string &dat
         i++;
     while(i <  data.size())
     {    
-        if(!isdigit(i) && atoi(data .c_str()) < 0)
+        if(!isdigit(i) && atof(data .c_str()) < 0)
         {
             std::cout<<"Error: not a positive number.\n";
             return(1);
         }
-        if(!isdigit(data[i]) ||  atoi(data .c_str()) == 0 || !data[i])
+        if((data[i] != '.' && !isdigit(data[i])) || atof(data .c_str()) == 0 )
         {
             std::cout<<"Error: bad value ."<<std::endl;
             return(1);
         }
+        if(data[i] == '.')
+            flag++;
         i++;
     }
     if(atof(data .c_str()) >= 1000)
@@ -121,7 +124,8 @@ int    BitcoinExchange::checkError(const std::string &key,const std::string &dat
         std::cout<<"Error: too large a number.\n";
         return (1);
     }
-    if(formatData(key) || data[i-1] == ' ')
+
+    if(formatData(key) || data[i-1] == ' ' || flag > 1 )
     {
         std::cout<<"Error: bad input => " <<key<<std::endl;
         return(1);
@@ -173,6 +177,7 @@ int checkday(const std::string &date)
 {
     int i = 0;
     int daysInMonth = 31; 
+    
     if(date.size() == 3)
     {
         while(i < 2)
@@ -200,29 +205,24 @@ int checkday(const std::string &date)
         return 1; 
     return 0;
 }
+
 int BitcoinExchange::formatData(const std::string &date)
 {
-    int i = 0;
-    size_t pos = 0;
-    size_t tmp = 0;
-
-    while (i < 3)
-    {
-        pos = date.find("-", tmp);//IT'S NOT BIG DEAL ??
-        if (pos != std::string::npos)
-        {
-            if(i == 0 && checkYear(date.substr(tmp, pos)) != 0)
-                return(1);
-            if(i == 1 && checkMonth(date.substr(tmp, pos - tmp))!= 0)
-                return 1;
-        }
-        else
-        {
-            if(checkday(date.substr(tmp))!= 0)
-                return 1;
-        }
-        tmp = pos + 1; 
+    size_t i = 0;
+    size_t j = 0;
+ 
+    while (i < date.size() && date[i] != '-')
         i++;
-    }
+    j = i  + 1;
+    if (checkYear(date.substr(0, i)) != 0)
+            return 1;
+    i ++;
+    while (i < date.size() && date[i] != '-')
+        i++;
+    i++;
+    if (checkMonth(date.substr(j , i - j - 1 )) != 0)
+            return 1; 
+    if (checkday(date.substr(i)) != 0)
+            return 1;
     return 0;
 }
