@@ -147,7 +147,7 @@ int checkYear(const std::string &date)
     }
     else    
         return 1;
-    if(atoi(date.c_str()) < 1970 || atoi(date.c_str()) > 2022)
+    if(atoi(date.c_str()) < 1 || atoi(date.c_str()) > 2023)
         return 1;
     year = atoi(date.c_str());
     return 0;
